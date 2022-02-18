@@ -2,8 +2,9 @@ import express from 'express';
 import path from 'path';
 import validator from 'validator';
 import emailModel from '../db/mongoose.js';
-import sendMailtoConfirm from './mailAuth.js';
-import bcrypt from 'bcrypt';
+import sendMailtoConfirm from './confirmationEmail/sendConfirmMail.js';
+import crypto from 'crypto-js';
+import checkHash from './confirmationEmail/checkHash.js';
 
 const app = express();
 const __dirname = path.resolve();
@@ -26,9 +27,7 @@ app.post('/', async (req, res) => {
 
   if (validator.isEmail(email)) {
     try {
-      console.log('here');
-
-      const hash = await bcrypt.hashSync(email, 10);
+      const hash = await crypto.SHA1(email).toString();
 
       const newMail = new emailModel({
         email: email,
@@ -47,6 +46,21 @@ app.post('/', async (req, res) => {
   } else {
     res.render(__dirname + '/views/error.ejs', {
       error_message: 'Invalid email format',
+    });
+  }
+});
+
+app.get('/confirm/:hash', async (req, res) => {
+  const { hash } = req.params;
+  const result = await checkHash(hash); // returns null if not in base
+
+  if (result) {
+    res.render(__dirname + '/views/error.ejs', {
+      error_message: 'Email confirmed',
+    });
+  } else {
+    res.render(__dirname + '/views/error.ejs', {
+      error_message: 'Email not in db',
     });
   }
 });
