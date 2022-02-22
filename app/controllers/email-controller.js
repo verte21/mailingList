@@ -8,7 +8,12 @@ class EmailController {
   async saveEmail(req, res) {
     const { email } = req.body;
 
-    // emailModel.findOne({ email: email })     <<<<<<<<<<<<<
+    if (await emailModel.exists({ email: email })) {
+      res.render('message.ejs', {
+        message: 'Email already signed!',
+      });
+      return;
+    }
 
     if (validator.isEmail(email)) {
       try {
