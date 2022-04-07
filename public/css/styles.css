@@ -1,13 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+
 body {
   min-height: 100vh;
-  background: rgb(215, 214, 79);
+  background: #d7d64f;
   background: linear-gradient(
     173deg,
-    rgba(215, 214, 79, 0.9836309523809523) 23%,
-    rgba(25, 184, 78, 1) 92%
+    #d7d64ffb 23%,
+    #19b84e 92%
   );
   background-repeat: no-repeat;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: Algerian;
+}
+
+.card {
+  border-radius: 76px;
+  background: linear-gradient(145deg, #569870, #67b585);
+  box-shadow:  29px 29px 58px #477d5c,
+               -29px -29px 58px #79d59c;
+  font-size: 24px; 
+}
+
+.button-submit {
+  background-image: radial-gradient(circle, rgba(215,214,79,0.9920343137254902) 5%, rgba(215,214,79,0.9920343137254902) 36%, rgba(215,214,79,0.9920343137254902) 54%, rgba(180,208,79,1) 66%, rgba(113,198,78,1) 83%, rgba(83,193,78,1) 91%, rgba(83,193,78,1) 91%, rgba(25,184,78,1) 100%);;
+  border-radius: 8px;
+  border-style: none;
+  box-sizing: border-box;
+  box-shadow: 0 6.4px 14.4px 0 rgb(0 0 0 / 13%), 0 1.2px 3.6px 0 rgb(0 0 0 / 11%);
+  color: #FFFFFF;
+  cursor: pointer;
+  flex-shrink: 0;
+  font-size: 22px;
+  font-weight: 500;
+  height: 4rem;
+  padding: 0 1.6rem;
+  text-align: center;
+  text-shadow: rgba(0, 0, 0, 0.25) 0 3px 8px;
+  transition: all .5s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-submit:hover {
+  transform: translateY(-5px);
+  transition-duration: .5s;
+}
+
+@media (min-width: 768px) {
+  .button-submit {
+    padding: 0 2.6rem;
+  }
+}
+
+.logo {
+  position:absolute;
+  left:auto;
+  right: auto;
+  top:0;
+  width: 250px;
+  height: 250px;
+ 
 }
